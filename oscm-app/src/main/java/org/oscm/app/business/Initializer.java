@@ -96,10 +96,10 @@ public class Initializer {
   private void publishTemplateFile() {
 
     try {
-      Path logTemplate = Paths.get(ClassLoader.getSystemResource(LOG4J_TEMPLATE).toURI());
+      Path logTemplate = Paths.get(getClass().getClassLoader().getResource(LOG4J_TEMPLATE).getPath());
       byte[] logTemplateContent = Files.readAllBytes(logTemplate);
       Files.write(logFile.toPath(), logTemplateContent);
-    } catch (URISyntaxException | IOException e) {
+    } catch (Exception e) {
       logger.error(
           "Failed to publish template file from "
               + LOG4J_TEMPLATE
