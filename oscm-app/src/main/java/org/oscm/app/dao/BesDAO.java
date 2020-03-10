@@ -83,6 +83,7 @@ public class BesDAO {
       String userName = pwAuth.getUserName();
       String password = pwAuth.getPassword();
 
+      LOGGER.info("Authenticating WS with user: "+userName);
       setBinding((BindingProvider) client, userName, password);
       return client;
     } catch (MalformedURLException e) {
@@ -152,6 +153,7 @@ public class BesDAO {
   <T> T getServicePort(Class<T> serviceClass, Map<String, Setting> settings)
       throws MalformedURLException {
 
+    LOGGER.info("Getting webservice......:"+serviceClass);
     String targetNamespace = serviceClass.getAnnotation(WebService.class).targetNamespace();
     QName serviceQName = new QName(targetNamespace, serviceClass.getSimpleName());
 

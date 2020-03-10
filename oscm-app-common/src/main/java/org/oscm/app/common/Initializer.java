@@ -8,8 +8,16 @@
 
 package org.oscm.app.common;
 
-import static org.oscm.app.common.Constants.APPLICATION_SERVER_HOME_CONSTANT;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.oscm.app.v2_0.intf.ControllerAccess;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
+import javax.ejb.*;
+import javax.inject.Inject;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,18 +28,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collection;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-import javax.ejb.*;
-import javax.inject.Inject;
-
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.PropertyConfigurator;
-import org.oscm.app.v2_0.intf.ControllerAccess;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static org.oscm.app.common.Constants.APPLICATION_SERVER_HOME_CONSTANT;
 
 @Singleton
 @Startup
@@ -179,9 +176,6 @@ public class Initializer {
                 logFileLastModified = lastModif;
                 LOGGER.debug("Reload log4j configuration from "
                         + logFile.getAbsolutePath());
-                new PropertyConfigurator().doConfigure(
-                        logFile.getAbsolutePath(),
-                        LogManager.getLoggerRepository());
                 logFileWarning = false;
             }
         } catch (Exception e) {

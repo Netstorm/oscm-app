@@ -87,6 +87,7 @@ public class TimerHandleUsageData {
         timerService.createTimer(0, timerInterval, TIMER_INFO);
         LOG.info("Event timer is up and running with an interval of "
                 + timerInterval);
+        LOG.info("VERIFICATION of slf4j...............");
     }
 
     /**

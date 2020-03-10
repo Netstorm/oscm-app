@@ -146,6 +146,7 @@ public class APPTimerServiceBean implements Cloneable {
             logger.info("Timer initialization start");
             appTimerServiceBean.initTimers_internal();
             logger.info("Timer initialization finished");
+            logger.info("VERIFICATION OF LOGGER");
         }
     }
 
